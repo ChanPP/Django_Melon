@@ -23,6 +23,7 @@ class EpisodeData:
         # print(soup)
         # div_list = soup.find("div", {"id": "content"})
         div_list = soup.find("table", {"class": "viewList"}).findAll("tr")
+        print(div_list)
         # url_title = div_list[2].find("td", {"class":"title"}).a.text
         # url_title = div_list[2].find("td", {"class": "title"}).a.text
         # url_thumbnail = div_list[2].findAll("td")[0].a.img['src']
