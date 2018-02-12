@@ -25,7 +25,7 @@ class artist_crawler:
         source = response.text
         print(source)
         soup = BeautifulSoup(source, "lxml")
-        # print(soup)
+        print(soup)
 
 
 if __name__ == "__main__":
