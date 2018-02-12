@@ -11,10 +11,18 @@ class Song(models.Model):
         blank=True,
         null=True,
     )
-
-    title = models.CharField('곡 제목', max_length=100)
-    genre = models.CharField('장르', max_length=100)
-    lyrics = models.TextField('가사', blank=True)
+    title = models.CharField(
+        '곡 제목',
+        max_length=100,
+    )
+    genre = models.CharField(
+        '장르',
+        max_length=100,
+    )
+    lyrics = models.TextField(
+        '가사',
+        blank=True,
+    )
 
     @property
     def artists(self):
