@@ -24,20 +24,24 @@ class artist_crawler:
         soup = BeautifulSoup(source, "lxml")
         div_list = soup.find("div", {"id": "conts"})
         dl_list = soup.find("div", {"class": "section_atistinfo04"}).findAll("dd")
-
+        dt_list = soup.find("div", {"class": "section_atistinfo04"}).findAll("dt")
         img_profile = div_list.find("span", {"id": "artistImgArea"}).img['src']
         name = div_list.find("div", {"class": "wrap_atist_info"}).p.text[5:].split()
-        
+
         if len(name) == 1:
             name = name[0]
         elif len(name) == 2:
             name = name[0]
         elif len(name) == 3:
-            name = name[0]+name[1]
+            name = name[0] + name[1]
         else:
-            name = name[0]+name[1]+name[2]
-
+            name = name[0] + name[1] + name[2]
         real_name = dl_list[0].text
+        if dt_list[0].text == "본명":
+            real_name = real_name
+        else:
+            real_name = ""
+
         nationality = dl_list[1].text
         birth_date = dl_list[2].text
         constellation = dl_list[4].text
