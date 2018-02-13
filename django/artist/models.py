@@ -1,5 +1,7 @@
 from django.db import models
 
+from artist import solo_artist_crawler
+
 
 class Artist(models.Model):
     BLOOD_TYPE_A = 'a'
@@ -18,10 +20,15 @@ class Artist(models.Model):
     name = models.CharField('이름', max_length=50)
     real_name = models.CharField('본명', max_length=30, blank=True)
     nationality = models.CharField('국적', max_length=50, blank=True)
-    birth_date = models.DateField( '생년월일', blank=True, null=True)
+    birth_date = models.DateField('생년월일', blank=True, null=True)
     constellation = models.CharField('별자리', max_length=30, blank=True)
     blood_type = models.CharField('혈액형', max_length=1, choices=CHOICES_BLOOD_TYPE, blank=True)
     intro = models.TextField('소개', blank=True)
+
+    def get_artist_detail(self):
+        artist_detail = solo_artist_crawler.artist_crawler.melon_artist_crawler(self.artist_id)
+        print(artist_detail)
+        # for artist in artist_detail
 
     def __str__(self):
         return self.name
