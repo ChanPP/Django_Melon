@@ -1,5 +1,4 @@
 from django.db import models
-
 from artist import solo_artist_crawler
 
 
@@ -16,6 +15,7 @@ class Artist(models.Model):
         (BLOOD_TYPE_AB, 'AB형'),
         (BLOOD_TYPE_OTHER, '기타'),
     )
+
     img_profile = models.ImageField('프로필 이미지', upload_to='artist', blank=True)
     name = models.CharField('이름', max_length=50)
     real_name = models.CharField('본명', max_length=30, blank=True)
@@ -25,10 +25,24 @@ class Artist(models.Model):
     blood_type = models.CharField('혈액형', max_length=1, choices=CHOICES_BLOOD_TYPE, blank=True)
     intro = models.TextField('소개', blank=True)
 
+
+class Artist_detail:
     def get_artist_detail(self):
-        artist_detail = solo_artist_crawler.artist_crawler.melon_artist_crawler(self.artist_id)
-        print(artist_detail)
-        # for artist in artist_detail
+        artist_detail = solo_artist_crawler.artist_crawler.melon_artist_crawler(self.name)
+        for Artist in artist_detail:
+            # if Artist.objects.filter(name=artist_detail['name']).exists():
+            #     continue
+
+            Artist.objects.create(
+                name=self,
+                img_profile=Artist['img_profile'],
+                real_name=Artist['real_name'],
+                nationality=Artist['nationality'],
+                birth_date=Artist['birth_date'],
+                constellation=Artist['constellation'],
+                blood_type=Artist['blood_type'],
+                intro=Artist['intro'],
+            )
 
     def __str__(self):
         return self.name

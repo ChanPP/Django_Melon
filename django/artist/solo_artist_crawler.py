@@ -17,7 +17,19 @@ class artist_crawler:
         self.blood_type = blood_type
         self.intro = intro
 
-    def melon_artist_crawler(artist_id):
+    def melon_artist_crawler(name):
+        url = f"https://www.melon.com/search/total/index.htm?q={name}&section=&ipath=srch_form"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "lxml")
+        artist_id = soup.find("div", {"class":"info_01"}).input['value']
+
+        '''
+        위쪽은 이름으로 검색하는법
+        위쪽 주석처리하고
+        def melon_artist_crawler(artist_id):
+        추가하면 artist_id로 검색함
+        '''
+
         url = f"https://www.melon.com/artist/detail.htm?artistId={artist_id}"
         response = requests.get(url)
         source = response.text
@@ -61,8 +73,6 @@ class artist_crawler:
 
 
 if __name__ == "__main__":
-    artist_id = 1191
-    # artist_id = 160816
-    ac = artist_crawler.melon_artist_crawler(artist_id)
+    name = input("이름을 입력하세요")
+    ac = artist_crawler.melon_artist_crawler(name)
     print(ac)
-
