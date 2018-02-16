@@ -56,61 +56,71 @@ class artist_crawler:
         else:
             real_name = ""
 
-
         intro = soup.find("div", {"id": "d_artist_intro"}).text.strip()
-
+        result = {}
         k = len(dd_list)
-        result = []
-        result.append({'name': name})
+        print(k)
+        result["name"] = name
         for i in range(k):
-            result.append({
-                dt_list[i].text: dd_list[i].text
-            })
-        result.append({'intro': intro})
-        # print(result)
+            result[dt_list[i].text]=dd_list[i].text
+        result['intro'] = intro
+        print(len(result))
+        print(result)
+        # print(result[4]['키/몸무게'])
+        # for i in result:
+        #
+        #     if i.keys() is (['별자리']):
+        #         [i]['constellation'] = ['별자리']
+        #         del [i]['별자리']
+        #     else:
+        #         print(i.keys())
+
         return result
+
+
+'''
+result[0]["이름"]=result[0]["name"]
+del result[0]["name"]
+'''
 
 '''
 데이터가 리스트의 dict처럼 나옴
 '''
-        # n = 0
-        # result = []
-        # while True:
-        #     result.append({
-        #         dt_list[n].text: dd_list[n].text
-        #     })
-        #     n += 1
-        #     if len(dd_list) == n:
-        #         break
-        # print(result)
+# n = 0
+# result = []
+# while True:
+#     result.append({
+#         dt_list[n].text: dd_list[n].text
+#     })
+#     n += 1
+#     if len(dd_list) == n:
+#         break
+# print(result)
 
 
 '''
 dd_list6개 아닐경우 에러남
 '''
-        # nationality = dd_list[1].text
-        # birth_date = dd_list[2].text
-        # constellation = dd_list[4].text
-        # blood_type = dd_list[5].text
-        # intro = soup.find("div", {"id": "d_artist_intro"}).text.strip()
-        # result = {
-        #     "name": name,
-        #     "img_profile": img_profile,
-        #     "real_name": real_name,
-        #     "nationality": nationality,
-        #     "birth_date": birth_date,
-        #     "constellation": constellation,
-        #     "blood_type": blood_type,
-        #     "intro": intro,
-        #     }
-        # return result
-
-
+# nationality = dd_list[1].text
+# birth_date = dd_list[2].text
+# constellation = dd_list[4].text
+# blood_type = dd_list[5].text
+# intro = soup.find("div", {"id": "d_artist_intro"}).text.strip()
+# result = {
+#     "name": name,
+#     "img_profile": img_profile,
+#     "real_name": real_name,
+#     "nationality": nationality,
+#     "birth_date": birth_date,
+#     "constellation": constellation,
+#     "blood_type": blood_type,
+#     "intro": intro,
+#     }
+# return result
 
 
 if __name__ == "__main__":
-    name = input("이름을 입력하세요")
-    # name = "박효신"
+    # name = input("이름을 입력하세요")
+    name = "박효신"
     ac = artist_crawler.melon_artist_crawler(name)
-    for i in ac:
-        print(i)
+    # print(ac)
