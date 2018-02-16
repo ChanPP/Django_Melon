@@ -5,12 +5,47 @@
 
   SELECT - extracts data from a database
 UPDATE - updates data in a database
-DELETE - deletes data from a database
+DELETE - deletes data from a database(데이터베이스 정보 삭제)
 INSERT INTO - inserts new data into a database
-CREATE DATABASE - creates a new database
+CREATE DATABASE - creates a new database(일반 운영자)
 ALTER DATABASE - modifies a database
 CREATE TABLE - creates a new table
 ALTER TABLE - modifies a table
-DROP TABLE - deletes a table
+DROP TABLE - deletes a table(데이터베이스 자체를 삭제)
 CREATE INDEX - creates an index (search key)
 DROP INDEX - deletes an index
+
+
+
+
+
+=	Equal
+<>	Not equal. Note: In some versions of SQL this operator may be written as !=
+>	Greater than
+<	Less than
+>=	Greater than or equal
+<=	Less than or equal
+BETWEEN	Between an inclusive range
+LIKE	Search for a pattern
+IN	To specify multiple possible values for a column
+
+
+
+LIKE Operator	Description
+WHERE CustomerName LIKE 'a%'	Finds any values that starts with "a"
+WHERE CustomerName LIKE '%a'	Finds any values that ends with "a"
+WHERE CustomerName LIKE '%or%'	Finds any values that have "or" in any position
+WHERE CustomerName LIKE '_r%'	Finds any values that have "r" in the second position
+WHERE CustomerName LIKE 'a_%_%'	Finds any values that starts with "a" and are at least 3 characters in length
+WHERE ContactName LIKE 'a%o'	Finds any values that starts with "a" and ends with "o"
+
+
+The following constraints are commonly used in SQL:
+
+NOT NULL - Ensures that a column cannot have a NULL value
+UNIQUE - Ensures that all values in a column are different
+PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+FOREIGN KEY - Uniquely identifies a row/record in another table
+CHECK - Ensures that all values in a column satisfies a specific condition
+DEFAULT - Sets a default value for a column when no value is specified
+INDEX - Used to create and retrieve data from the database very quickly
