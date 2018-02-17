@@ -1,5 +1,5 @@
 from django.db import models
-from artist import solo_artist_crawler
+from artist import artist_crawler
 
 
 class Artist(models.Model):
@@ -28,7 +28,7 @@ class Artist(models.Model):
 
 class Artist_detail:
     def get_artist_detail(self):
-        artist_detail = solo_artist_crawler.artist_crawler.melon_artist_crawler(self.name)
+        artist_detail = artist_crawler.artist_crawler.melon_artist_crawler(self.name)
         for Artist in artist_detail:
             # if Artist.objects.filter(name=artist_detail['name']).exists():
             #     continue

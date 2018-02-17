@@ -46,15 +46,9 @@ class artist_crawler:
         elif len(name) == 2:
             name = name[0]
         elif len(name) == 3:
-            name = name[0] + name[1]
+            name = name[0] + " " + name[1]
         else:
-            name = name[0] + name[1] + name[2]
-
-        # real_name = dd_list[0].text
-        # if dt_list[0].text == "본명":
-        #     real_name = real_name
-        # else:
-        #     real_name = ""
+            name = name[0] + " " + name[1] + " " + name[2]
 
         intro = soup.find("div", {"id": "d_artist_intro"}).text.strip()
         result = {}
@@ -114,14 +108,6 @@ class artist_crawler:
         return result
 
 
-# dictionary[new_key] = dictionary[old_key]
-# del dictionary[old_key]
-
-'''
-result[0]["이름"]=result[0]["name"]
-del result[0]["name"]
-'''
-
 '''
 데이터가 리스트의 dict처럼 나옴
 '''
@@ -160,6 +146,6 @@ dd_list6개 아닐경우 에러남
 
 if __name__ == "__main__":
     # name = input("이름을 입력하세요")
-    name = "jfla"
+    name = "박효신"
     ac = artist_crawler.melon_artist_crawler(name)
     print(ac)
