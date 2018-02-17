@@ -29,7 +29,7 @@ class artist_crawler:
         def melon_artist_crawler(artist_id):
         추가하면 artist_id로 검색함
         '''
-
+        # def melon_artist_crawler(artist_id):
         url = f"https://www.melon.com/artist/detail.htm?artistId={artist_id}"
         response = requests.get(url)
         source = response.text
@@ -50,33 +50,72 @@ class artist_crawler:
         else:
             name = name[0] + name[1] + name[2]
 
-        real_name = dd_list[0].text
-        if dt_list[0].text == "본명":
-            real_name = real_name
-        else:
-            real_name = ""
+        # real_name = dd_list[0].text
+        # if dt_list[0].text == "본명":
+        #     real_name = real_name
+        # else:
+        #     real_name = ""
 
         intro = soup.find("div", {"id": "d_artist_intro"}).text.strip()
         result = {}
         k = len(dd_list)
-        print(k)
         result["name"] = name
+        result['img_profile'] = img_profile
         for i in range(k):
-            result[dt_list[i].text]=dd_list[i].text
-        result['intro'] = intro
-        print(len(result))
-        print(result)
-        # print(result[4]['키/몸무게'])
-        # for i in result:
-        #
-        #     if i.keys() is (['별자리']):
-        #         [i]['constellation'] = ['별자리']
-        #         del [i]['별자리']
-        #     else:
-        #         print(i.keys())
+            result[dt_list[i].text] = dd_list[i].text
+        result['intro1'] = intro
+
+        if not result.get("본명"):
+            pass
+        else:
+            result['real_name'] = result["본명"]
+            del result["본명"]
+
+        if not result.get("키/몸무게"):
+            pass
+        else:
+            del result["키/몸무게"]
+
+        if not result.get("별명"):
+            pass
+        else:
+            del result["별명"]
+
+        if not result.get("국적"):
+            pass
+        else:
+            result['nationality'] = result["국적"]
+            del result["국적"]
+
+        if not result.get("생일"):
+            pass
+        else:
+            result['birth_date'] = result["생일"]
+            del result["생일"]
+
+        if not result.get("별자리"):
+            pass
+        else:
+            result['constellation'] = result["별자리"]
+            del result["별자리"]
+
+        if not result.get("혈액형"):
+            pass
+        else:
+            result["blood_type"] = result["혈액형"]
+            del result["혈액형"]
+
+        if not result.get("intro1"):
+            pass
+        else:
+            result["intro"] = result["intro1"]
+            del result["intro1"]
 
         return result
 
+
+# dictionary[new_key] = dictionary[old_key]
+# del dictionary[old_key]
 
 '''
 result[0]["이름"]=result[0]["name"]
@@ -121,6 +160,6 @@ dd_list6개 아닐경우 에러남
 
 if __name__ == "__main__":
     # name = input("이름을 입력하세요")
-    name = "박효신"
+    name = "jfla"
     ac = artist_crawler.melon_artist_crawler(name)
-    # print(ac)
+    print(ac)
