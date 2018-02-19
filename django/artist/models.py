@@ -25,16 +25,20 @@ class Artist(models.Model):
     blood_type = models.CharField('혈액형', max_length=1, choices=CHOICES_BLOOD_TYPE, blank=True)
     intro = models.TextField('소개', blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Artist_detail:
     def get_artist_detail(self):
+
         artist_detail = artist_crawler.artist_crawler.melon_artist_crawler(self.name)
         for Artist in artist_detail:
             # if Artist.objects.filter(name=artist_detail['name']).exists():
             #     continue
 
             Artist.objects.create(
-                name=self,
+                name=self.name,
                 img_profile=Artist['img_profile'],
                 real_name=Artist['real_name'],
                 nationality=Artist['nationality'],
@@ -43,6 +47,3 @@ class Artist_detail:
                 blood_type=Artist['blood_type'],
                 intro=Artist['intro'],
             )
-
-    def __str__(self):
-        return self.name

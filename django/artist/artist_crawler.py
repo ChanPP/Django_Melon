@@ -145,7 +145,7 @@ dd_list6개 아닐경우 에러남
 
 
 if __name__ == "__main__":
-    # name = input("이름을 입력하세요")
-    name = "박효신"
+    name = input("이름을 입력하세요")
+    # name = "박효신"
     ac = artist_crawler.melon_artist_crawler(name)
     print(ac)

@@ -15,6 +15,9 @@ def artist_list(request):
     )
 
 
+
+
+
 def artist_add(request):
     # HTML에 Artist클래스가 받을 수 있는 모든 input을 구현
     #   img_profile은 제외
