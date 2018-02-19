@@ -2,9 +2,10 @@
 
 {% block content %}
 <div>
-	<form action="" method="post"></form>
-	{% csrf_token %}
-	<input type="text">
-	<button type=""></button>
+	<form action="" method="post">
+		{% csrf_token %}
+		<input type="text">
+		<button type="submit">검색</button>
+	</form>
 </div>
 {% endblock %}

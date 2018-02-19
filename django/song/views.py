@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from .models import Song
@@ -16,11 +17,12 @@ def song_list(request):
 
 
 def song_search(request):
-    song_search = Song.objects.all()
-    context = {
-        'song_search': song_search,
-    }
-    return render(request, )
+    if request.method == "POST":
+        keyword = request.POST['keyword']
+        return HttpResponse(keyword)
+
+    elif request.method == "GET":
+        return render(request, 'song/song_search.html')
 
     '''
     사용 할 URL:song/search/
