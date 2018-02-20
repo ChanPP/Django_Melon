@@ -1,32 +1,27 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
 <div>
+	<h1><a href="{% url 'song:song-search' %}">노래 검색</a></h1>
+	<!--
+		1. song/urls.py에 app_name지정
+		2. 각 path에 name지정
+		3. <app_name>:<url_name> 형식을 사용
+	-->
 	<form action="" method="get">
 		<input type="text" name="keyword">
 		<button type="submit">검색</button>
 	</form>
 
 	<h3>아티스트명에 포함</h3>
-	<ul>
-		{% for song in songs_from_artists %}
-		<li>{{ song.title }}</li>
-		{% endfor %}
-	</ul>
+        {% include "song_search_result.html" %}
 
 	<h3>앨범명에 포함</h3>
-	<ul>
-		{% for song in songs_from_albums %}
-		<li>{{ song.title }}</li>
-		{% endfor %}
-	</ul>
+        {% include "song_search_result.html" %}
 
 	<h3>노래제목에 포함</h3>
 	<ul>
-		{% for song in songs_from_title %}
-		<li>{{ song.title }}</li>
-		{% endfor %}
+        {% include "song_search_result.html" %}
 	</ul>
 
 
