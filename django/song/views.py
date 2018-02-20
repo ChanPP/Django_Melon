@@ -1,3 +1,6 @@
+from collections import namedtuple
+from typing import NamedTuple
+
 from django.db.models import Q
 from django.shortcuts import render
 
@@ -57,21 +60,27 @@ def song_search(request):
     #  위 세 변수에 더 위의 조건 3개에 부합하는 쿼리셋을 각각 전달
     #  세 변수를 이용해 검색 결과를 3단으로 분리해서 출력
     #  -> 아티스트로 검색한 노래 결과, 앨범으로 검색한 노래 결과, 제목으로 검색한 노래 결과
-    context = {}
+    context = {
+        'song_infos': [],
+    }
     keyword = request.GET.get('keyword')
 
+    # SongInfo = namedtuple('SongInfo', ['type', 'q'])
+    class SongInfo(NamedTuple):
+        type: str
+        q: Q
+
     if keyword:
-        # Song과 연결된 Artist의 name에 keyword가 포함되는 경우
-        songs_from_artists = Song.objects.filter(
-            album__artists__name__contains=keyword
+        song_infos = (
+            SongInfo(type='아티스트', q=Q(album__artists__name__contains=keyword)),
+            SongInfo(type='앨범', q=Q(album__title__contains=keyword)),
+            SongInfo(type='노래제목', q=Q(title__contains=keyword)),
         )
-        context['songs_from_artists'] = songs_from_artists
 
-        # Song과 연결된 Album의 title에 keyword가 포함되는 경우
-        songs_from_albums = Song.objects.filter(album__title__contains=keyword)
-        context['songs_from_albums'] = songs_from_albums
+        for type, q in song_infos:
+            context['song_infos'].append({
+                'type': type,
+                'songs': Song.objects.filter(q),
+            })
 
-        # Song의 title에 keyword가 포함되는 경우
-        songs_from_title = Song.objects.filter(title__contains=keyword)
-        context['songs_from_title'] = songs_from_title
     return render(request, 'song/song_search.html', context)
