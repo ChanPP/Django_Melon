@@ -17,11 +17,11 @@ class artist_crawler:
         self.blood_type = blood_type
         self.intro = intro
 
-    def melon_artist_crawler(name):
-        url = f"https://www.melon.com/search/total/index.htm?q={name}&section=&ipath=srch_form"
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, "lxml")
-        artist_id = soup.find("div", {"class": "info_01"}).input['value']
+    # def melon_artist_crawler(name):
+        # url = f"https://www.melon.com/search/total/index.htm?q={name}&section=&ipath=srch_form"
+        # response = requests.get(url)
+        # soup = BeautifulSoup(response.text, "lxml")
+        # artist_id = soup.find("div", {"class": "info_01"}).input['value']
 
         '''
         위쪽은 이름으로 검색하는법
@@ -29,7 +29,7 @@ class artist_crawler:
         def melon_artist_crawler(artist_id):
         추가하면 artist_id로 검색함
         '''
-        # def melon_artist_crawler(artist_id):
+    def melon_artist_crawler(artist_id):
         url = f"https://www.melon.com/artist/detail.htm?artistId={artist_id}"
         response = requests.get(url)
         source = response.text
@@ -38,9 +38,10 @@ class artist_crawler:
         dl_list = soup.find("div", {"class": "section_atistinfo04"}).find("dl")
         dd_list = soup.find("div", {"class": "section_atistinfo04"}).findAll("dd")
         dt_list = soup.find("div", {"class": "section_atistinfo04"}).findAll("dt")
-        img_profile = div_list.find("span", {"id": "artistImgArea"}).img['src']
+        img_profile = div_list.find("span", {"id": "artistImgArea"}).img['src'][:-70]
         name = div_list.find("div", {"class": "wrap_atist_info"}).p.text[5:].split()
 
+        #가수명 뒤에 본명 날림
         if len(name) == 1:
             name = name[0]
         elif len(name) == 2:
@@ -50,7 +51,7 @@ class artist_crawler:
         else:
             name = name[0] + " " + name[1] + " " + name[2]
 
-        intro = soup.find("div", {"id": "d_artist_intro"}).text.strip()
+        intro = soup.find("div", {"id": "d_artist_intro"}).text
         result = {}
         k = len(dd_list)
         result["name"] = name
@@ -59,6 +60,7 @@ class artist_crawler:
             result[dt_list[i].text] = dd_list[i].text
         result['intro1'] = intro
 
+        #django model과 이름맞춤
         if not result.get("본명"):
             pass
         else:
