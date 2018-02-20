@@ -13,16 +13,9 @@
 		<button type="submit">검색</button>
 	</form>
 
-	<h3>아티스트명에 포함</h3>
-        {% include "song_search_result.html" %}
-
-	<h3>앨범명에 포함</h3>
-        {% include "song_search_result.html" %}
-
-	<h3>노래제목에 포함</h3>
-	<ul>
-        {% include "song_search_result.html" %}
-	</ul>
+{% include 'include/song_search_result.html' with type="아티스트" songs=songs_from_Artists only %}
+{% include 'include/song_search_result.html' with type="타이틀" songs=songs_from_albums only %}
+{% include 'include/song_search_result.html' with type="앨범" songs=songs_from_title only %}
 
 
 </div>

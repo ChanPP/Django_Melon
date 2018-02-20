@@ -46,7 +46,6 @@ def song_search(request):
     :param request:
     :return:
     """
-    context = {}
     # Song과 연결된 Artist의 name에 keyword가 포함되는 경우
     # Song과 연결된 Album의 title에 keyword가 포함되는 경우
     # Song의 title에 keyword가 포함되는 경우
@@ -58,6 +57,7 @@ def song_search(request):
     #  위 세 변수에 더 위의 조건 3개에 부합하는 쿼리셋을 각각 전달
     #  세 변수를 이용해 검색 결과를 3단으로 분리해서 출력
     #  -> 아티스트로 검색한 노래 결과, 앨범으로 검색한 노래 결과, 제목으로 검색한 노래 결과
+    context = {}
     keyword = request.GET.get('keyword')
 
     if keyword:
