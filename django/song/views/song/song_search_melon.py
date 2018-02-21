@@ -1,11 +1,11 @@
 from django.shortcuts import render
 
 __all__ = (
-    'artist_search_from_melon',
+    'song_search_from_melon',
 )
 
 
-def artist_search_from_melon(request):
+def song_search_from_melon(request):
     keyword = request.GET.get("keyword")
     context = {}
     if keyword:
@@ -20,18 +20,19 @@ def artist_search_from_melon(request):
         # songs = form_lists[0].find("div", {"class": "ellipsis"}).findAll("a")[1]["title"]
         # artists = form_lists[0].find("div", {"id": "artistName"}).span.text
         # albums = form_lists[0].find("div", {"class": "ellipsis"}).a.b.text
-        album = form_lists[0].findAll("td")[4].a.text
-        print(album)
+        # album = form_lists[0].findAll("td")[4].a.text
 
         song_search_list = []
         for form_list in form_lists:
             song = form_list.find("div", {"class": "ellipsis"}).findAll("a")[1]["title"]
             artist = form_list.find("div", {"id": "artistName"}).span.text
             artist_album = form_list.findAll("td")[4].a.text
+            song_id = form_list.find("div").input["value"]
             song_search_list.append({
                 "song": song,
                 "artist": artist,
                 "artist_album": artist_album,
+                "song_id": song_id,
             })
         context['song_search_list'] = song_search_list
-    return render(request, 'song/song_search_form_melon.html')
+    return render(request, 'song/song_search_from_melon.html', context)

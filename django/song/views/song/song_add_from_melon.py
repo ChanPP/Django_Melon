@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
+from crawler import song_crawler
+from ...models import Song
 
 __all__ = (
     'song_add_from_melon',
@@ -11,5 +14,5 @@ def song_add_from_melon(request):
     #   song_search_from_melon도 구현
     #       -> 이 안에 'DB에 추가'하는 Form구현
     if request.method == "POST":
-        artist = request.POST["artist"]
-
+        song_id = request.POST['song_id']
+        return render(request)
