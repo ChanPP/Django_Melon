@@ -1,22 +1,13 @@
-from collections import namedtuple
 from typing import NamedTuple
 
 from django.db.models import Q
 from django.shortcuts import render
 
-from .models import Song
+from song.models import Song
 
-
-def song_list(request):
-    songs = Song.objects.all()
-    context = {
-        'songs': songs,
-    }
-    return render(
-        request,
-        'song/song_list.html',
-        context,
-    )
+__all__ = (
+    'song_search',
+)
 
 
 def song_search(request):
@@ -84,5 +75,3 @@ def song_search(request):
             })
 
     return render(request, 'song/song_search.html', context)
-
-
