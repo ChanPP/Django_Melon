@@ -2,7 +2,7 @@ import os
 import requests
 from bs4 import BeautifulSoup, NavigableString
 
-
+'''
 class MelonCrawler:
     def search_song(self, q):
         url = 'https://www.melon.com/search/song/index.htm'
@@ -95,3 +95,43 @@ if __name__ == '__main__':
     search_song_list = crawler.search_song(q)
     for i in search_song_list:
         print(i)
+'''
+
+
+class Song_clawler:
+
+    def __init__(self, song_album_img, song_album, song_name,
+                 song_genre, song_lyrics, song_id):
+        self.song_album_img = song_album_img
+        self.song_album = song_album
+        self.song_name = song_name
+        self.song_genre = song_genre
+        self.song_lyrics = song_lyrics
+        self.song_id = song_id
+
+    def melon_song_crawler(song_id):
+        URL = f'https://www.melon.com/song/detail.htm?songId={song_id}'
+
+        response = requests.get(URL)
+        soup = BeautifulSoup(response.text, "lxml")
+
+        song_album_img = soup.find("div", {"class": "thumb"}).a.img["src"].strip()[:-59]
+        song_album = soup.find("div", {"class": "meta"}).dl.dd.a.text
+        song_name = soup.find("meta", {"property": "og:title"})["content"]
+        song_genre = soup.find("div", {"class": "meta"}).findAll("dd")[2].text
+        song_lyrics = soup.find("div", {"id": "d_video_summary"}).text
+
+        song_search_list = ({
+            "song_album_img": song_album_img,
+            "song_album": song_album,
+            "song_name": song_name,
+            "song_genre": song_genre,
+            "song_lyrics": song_lyrics
+        })
+        return song_search_list
+
+
+if __name__ == "__main__":
+    song_id = input("song_id를 입력하세요")
+    song_crawler = Song_clawler.melon_song_crawler(song_id)
+    print(song_crawler)
