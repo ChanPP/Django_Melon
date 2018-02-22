@@ -120,6 +120,7 @@ class Song_clawler:
         song_name = soup.find("meta", {"property": "og:title"})["content"]
         song_genre = soup.find("div", {"class": "meta"}).findAll("dd")[2].text
         song_lyrics = soup.find("div", {"id": "d_video_summary"}).text
+        " ".join(song_lyrics)
 
         song_search_list = ({
             "song_album_img": song_album_img,
