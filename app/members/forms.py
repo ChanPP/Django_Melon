@@ -6,10 +6,14 @@ __all__ = (
 
 
 class SignupForm(forms.Form):
-    username = forms.CharField()
+    username = forms.CharField(
+        label="아이디",
+    )
     password = forms.CharField(
-        widget=forms.PasswordInput
+        label="비밀번호",
+        widget=forms.PasswordInput,
     )
     password2 = forms.CharField(
-        widget=forms.PasswordInput
+        label="비밀번호 확인",
+        widget=forms.PasswordInput,
     )
