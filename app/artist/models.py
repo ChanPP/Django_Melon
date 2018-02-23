@@ -1,8 +1,5 @@
 from datetime import datetime
-from io import BytesIO
-from pathlib import Path
 
-import requests
 from django.core.files import File
 from django.db import models
 
