@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.shortcuts import render, redirect
 
+from members.forms import SignupForm
+
 User = get_user_model()
 
 
@@ -37,11 +39,16 @@ def signup_view(request):
     # username이 중복되는지 검사, 존재하지않으면 유저 생성 후 index로 이동
     #   password, password2가 같은지도 확인
     # 이외의경우는 다시 회원가입화면으로
+
     context = {
         'errors': [],
     }
+
+    # context = SignupForm(request)
+
     # 전달받은 데이터에 문제가 있을 경우, context['errors']를 채우고
     # 해당 내용을 signup.html템플릿에서 출력
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
