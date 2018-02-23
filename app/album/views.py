@@ -1,9 +1,6 @@
 from django.shortcuts import render
-from album.models import Album
 
-__all__ = {
-    'album_list'
-}
+from .models import Album
 
 
 def album_list(request):

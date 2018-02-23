@@ -1,6 +1,6 @@
 from django.urls import path
 
-from album import views
+from . import views
 
 app_name = 'album'
 urlpatterns = [
