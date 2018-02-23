@@ -47,6 +47,8 @@ class ArtistManager(models.Manager):
                 'blood_type': blood_type,
             }
         )
+        # img_profile필드에 저장할 파일확장자를 바이너리 데이터 자체의 MIME_TYPE에서 가져옴
+        # 파일명은 artist_id를 사용
         temp_file = download(url_img_cover)
         file_name = '{artist_id}.{ext}'.format(
             artist_id=artist_id,
