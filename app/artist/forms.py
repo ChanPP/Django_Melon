@@ -10,10 +10,16 @@ __all__ = (
 class ArtistForm(forms.ModelForm):
     class Meta:
         model = Artist
-        fields = ['melon_id', 'name', 'real_name', 'img_profile',
-                  'nationality', 'birth_date', 'constellation',
-                  'blood_type', 'intro']
-
+        fields = [
+            'img_profile',
+            'name',
+            'real_name',
+            'nationality',
+            'birth_date',
+            'constellation',
+            'blood_type',
+            'intro',
+        ]
         widgets = {
             'name': forms.TextInput(
                 attrs={
@@ -21,4 +27,3 @@ class ArtistForm(forms.ModelForm):
                 }
             )
         }
-

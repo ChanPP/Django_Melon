@@ -46,14 +46,13 @@ def artist_search_from_melon(request):
             name = dl.select_one('dt:nth-of-type(1) > a').get_text(strip=True)
             url_img_cover = li.select_one('a.thumb img').get('src')
             artist_id = re.search(p, href).group(1)
-            # 여기에 데이터가 추가되어야 함
 
+            # 여기에 데이터가 추가되어야 함
             artist_info_list.append({
                 'name': name,
                 'url_img_cover': url_img_cover,
                 'artist_id': artist_id,
                 'is_exist': Artist.objects.filter(melon_id=artist_id).exists(),
             })
-            context['artist_info_list'] = artist_info_list
-
+        context['artist_info_list'] = artist_info_list
     return render(request, 'artist/artist_search_from_melon.html', context)

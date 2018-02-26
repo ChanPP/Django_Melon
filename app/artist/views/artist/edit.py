@@ -11,13 +11,16 @@ __all__ = (
 def artist_edit(request, artist_pk):
     """
     artist_pk에 해당하는 Artist를 수정
+
     Form: ArtistForm
     Template: artist/artist-edit.html
+
     bound form: ArtistForm(instance=<artist instance>)
         bound form을 template에서 출력하면 기존 데이터가 채워진 form이 생성됨
     ModelForm을 사용해 instance 업데이트
         form = ArtistForm(request.POST, request.FILES, instance=<artist instance>)
         form.save()
+
     :param request:
     :param artist_pk:
     :return:
