@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 
 class User(AbstractUser):
@@ -9,6 +10,11 @@ class User(AbstractUser):
     # makemigrations -> migrate
 
     # 데이터베이스에 member_user 테이블이 생성되었는지 확인
+    img_profile = models.ImageField(
+        upload_to='user',
+        blank=True,
+    )
+
     def toggle_like_artist(self, artist):
         """
         이 User와 특정 Artist를 연결하는

@@ -1,9 +1,8 @@
 import requests
-from django.contrib.auth import get_user_model, login
-from django.http import HttpResponse
+from django.contrib.auth import get_user_model, login, authenticate
 from django.shortcuts import redirect
 
-from config import settings
+from django.conf import settings
 
 __all__ = (
     'facebook_login',
@@ -12,15 +11,23 @@ User = get_user_model()
 
 
 def facebook_login(request):
+    code = request.GET.get('code')
+    user = authenticate(request, code=code)
+    # print(user.url_picture)
+    login(request, user)
+    return redirect('index')
+
+
+def facebook_login_backup(request):
     client_id = settings.FACEBOOK_APP_ID
     client_secret = settings.FACEBOOK_SECRET_CODE
     code = request.GET['code']
     redirect_uri = 'http://localhost:8000/facebook-login/'
     url = 'https://graph.facebook.com/v2.12/oauth/access_token'
     params = {
-        'client_id': client_id,
+        'CLIENT_ID': client_id,
         'redirect_uri': redirect_uri,
-        'client_secret': client_secret,
+        'CLIENT_SECRET': client_secret,
         'code': code,
     }
     response = requests.get(url, params)
@@ -45,7 +52,7 @@ def facebook_login(request):
     name = response_dict['name']
     first_name = response_dict['first_name']
     last_name = response_dict['last_name']
-    url_picture = response_dict['picture']['data']['url']
+    url_picture = response_dict['picture']['data']['URL_ME']
 
     if User.objects.filter(username=facebook_id):
         user = User.objects.get(username=facebook_id)

@@ -10,7 +10,7 @@ __all__ = (
 def artist_detail(request, artist_pk):
     # artist_pk에 해당하는 Artist정보 보여주기
     # Template: artist/artist_detail.html
-    # URL: /3/
+    # URL_ME: /3/
     artist = get_object_or_404(Artist, pk=artist_pk)
     context = {
         'artist': artist,

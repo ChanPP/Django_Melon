@@ -12,7 +12,7 @@ __all__ = (
 
 def song_search(request):
     """
-    사용할 URL: song/search/
+    사용할 URL_ME: song/search/
     사용할 Template: templates/song/song_search.html
         form안에
             input한개, button한개 배치
