@@ -50,6 +50,15 @@ AUTHENTICATION_BACKENDS = [
     'members.backends.FacebookBackend',
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = 'parkchan428@gmail.com'
+EMAIL_HOST_PASSWORD = 'zjavbxj14'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
