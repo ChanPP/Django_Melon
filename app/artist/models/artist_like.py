@@ -1,13 +1,14 @@
 from datetime import datetime
 
+from django.conf import settings
 from django.db import models
 
-from artist.models import Artist
-from config import settings
+from .artist import Artist
 
-__all__ =(
+__all__ = (
     'ArtistLike',
 )
+
 
 class ArtistLike(models.Model):
     # Artist와 User(members.User)와의 관계를 나타내는 중개모델

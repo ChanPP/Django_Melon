@@ -1,11 +1,13 @@
+from django.conf import settings
 from django.db import models
 
-from artist.models import ArtistManager
-from config import settings
+from .artist_youtube import ArtistYouTube
+from .managers import ArtistManager
 
 __all__ = (
-    'Artist'
+    'Artist',
 )
+
 
 class Artist(models.Model):
     BLOOD_TYPE_A = 'a'
@@ -70,6 +72,11 @@ class Artist(models.Model):
         settings.AUTH_USER_MODEL,
         through='ArtistLike',
         related_name='like_artists',
+        blank=True,
+    )
+    youtube_videos = models.ManyToManyField(
+        ArtistYouTube,
+        related_name='artists',
         blank=True,
     )
 

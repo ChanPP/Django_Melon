@@ -63,7 +63,3 @@ class ArtistManager(models.Manager):
             artist.img_profile.delete()
         artist.img_profile.save(file_name, File(temp_file))
         return artist, artist_created
-
-
-
-
