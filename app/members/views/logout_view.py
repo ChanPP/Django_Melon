@@ -1,10 +1,12 @@
-from django.contrib.auth import logout
+from django.contrib.auth import logout, get_user_model
 from django.shortcuts import redirect
 
+User = get_user_model()
 
-__all__ =(
+__all__ = (
     'logout_view',
 )
+
 
 def logout_view(request):
     # /logout/
@@ -12,4 +14,3 @@ def logout_view(request):
     # GET요청이든 POST요청이든 상관없음
     logout(request)
     return redirect('index')
-

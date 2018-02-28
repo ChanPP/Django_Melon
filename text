@@ -1,29 +1,120 @@
-class PostLike(models.Model):
-    post = models.ForeignKey(
-        Post,
-        on_delete=models.CASCADE,
-    )
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-    )
-    created_date = models.DateTimeField(
-        auto_now_add=True
-    )
 
-    class Meta:
-        verbose_name_plural = 'Intermediate - PostLike'
 
-    def __str__(self):
-        # 글 title이 "공지사항"이며
-        # 유저 name이 "이한영"이고,
-        # 좋아요 누른 시점이 2018.01.31일때
-        # "공지사항"글의 좋아요(이한영, 2018.01.31)으로 출력
-        return '"{title}"글의 좋아요({name}, {date})'.format(
-            title=self.post.title,
-            name=self.user.name,
-            date=datetime.strftime(
-                # timezone.make_naive(self.created_date),
-                timezone.localtime(self.created_date),
-                '%Y.%m.%d'),
-        )
+
+
+
+    "items": [
+        {
+            "etag": "\"_gJQceDMxJ8gP-8T2HLXUoURK8c/AqmsFD6zcZ0DV9O9RFiabPto8Eo\"",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCJrOtniJ0-NWz37R30urifQ"
+            },
+            "snippet": {
+                "publishedAt": "2012-08-25T20:55:38.000Z",
+                "channelId": "UCJrOtniJ0-NWz37R30urifQ",
+                "title": "Alan Walker",
+                "description": "When I was a kid, I had a fascination for programming and graphic design. Music kind of just happened spontaneously a few years back. I found a track on Youtube I liked a lot – it inspired...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/-k7WILhueCts/AAAAAAAAAAI/AAAAAAAAAAA/aQWUNVk_moE/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/-k7WILhueCts/AAAAAAAAAAI/AAAAAAAAAAA/aQWUNVk_moE/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/-k7WILhueCts/AAAAAAAAAAI/AAAAAAAAAAA/aQWUNVk_moE/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+                    }
+                },
+                "channelTitle": "Alan Walker",
+                "liveBroadcastContent": "live"
+            }
+        },
+
+
+
+
+
+
+
+
+
+
+        {
+            "etag": "\"_gJQceDMxJ8gP-8T2HLXUoURK8c/gunp-G9gFTDWj_yJzpN8eCcx3oc\"",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "meOoktqrGZ4"
+            },
+            "snippet": {
+                "publishedAt": "2016-12-16T13:15:45.000Z",
+                "channelId": "UCJrOtniJ0-NWz37R30urifQ",
+                "title": "World Of Walker (24/7 Live Radio)",
+                "description": "Hey Walkers, listen to my live radio. Feel free to chat and I'll see you in here once in a while. / Alan #WorldOfWalker Chat rules: *No negativity towards anyone *Keep it a family environment,...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/meOoktqrGZ4/default_live.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/meOoktqrGZ4/mqdefault_live.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/meOoktqrGZ4/hqdefault_live.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "Alan Walker",
+                "liveBroadcastContent": "live"
+            }
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+        {
+            "etag": "\"_gJQceDMxJ8gP-8T2HLXUoURK8c/TBmtl9mwJJyxNEwjYzs_BhFgurE\"",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "60ItHLz5WEA"
+            },
+            "snippet": {
+                "publishedAt": "2015-12-04T07:00:30.000Z",
+                "channelId": "UCJrOtniJ0-NWz37R30urifQ",
+                "title": "Alan Walker - Faded",
+                "description": "Listen to ”Faded” on Spotify: http://bit.ly/faded_spotify Listen to ”Faded” via other plattforms: https://AlanWalker.lnk.to/faded Merch available at http://bit.ly/AlanWalkerMerch ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/60ItHLz5WEA/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/60ItHLz5WEA/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/60ItHLz5WEA/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "Alan Walker",
+                "liveBroadcastContent": "none"
+            }
+        }
+    ]
+}

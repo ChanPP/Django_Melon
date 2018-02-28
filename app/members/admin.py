@@ -14,7 +14,7 @@ class UserAdmin(DjangoUserAdmin):
             'first_name',
             'last_name',
             'email',
-            'img_profile'
+            'img_profile',
         )}),
         ('권한', {'fields': (
             'is_active',

@@ -27,7 +27,7 @@ urlpatterns = [
     # artist.urls모듈을 include하도록 설정
     path('', views.index, name='index'),
     path('login/', login_view, name='login'),
-    path('facebook-login/', facebook_login, name='facebook-login'),
+    path('facebook-login/', facebook_login, name='facebookg-login'),
     path('logout/', logout_view, name='logout'),
     path('signup/', signup_view, name='signup'),
 

@@ -1,14 +1,13 @@
 from django.contrib.auth import get_user_model
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
 
 from members.forms import SignupForm
 
+User = get_user_model()
 
 __all__ = (
     'signup_view',
 )
-
-User = get_user_model()
 
 
 def signup_view(request):

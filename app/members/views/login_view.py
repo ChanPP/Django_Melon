@@ -1,10 +1,12 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
 from django.shortcuts import render, redirect
 
+User = get_user_model()
 
-__all__ =(
+__all__ = (
     'login_view',
 )
+
 
 def login_view(request):
     # POST요청일때는

@@ -26,10 +26,10 @@ def artist_add(request):
     #       name값만 받아서 name만 갖는 Artist를 먼저 생성
     #       성공 시 나머지 값들을 하나씩 적용해보기
     # 6. request.POST에 담긴 값을 사용해 Artist인스턴스 생성
-    # 7. 생성 완료 후 'artist:artist-list' URL_ME name에 해당하는 view로 이동
+    # 7. 생성 완료 후 'artist:artist-list' URL name에 해당하는 view로 이동
 
     # 1. artist/artist_add.html에 Artist_add다 라는 내용만 표시
-    #   URL_ME, view를 서로 연결
+    #   url, view를 서로 연결
     #   artist/add/ URL사용
 
     # 2. aritst_add.html에 form을 하나 생성
