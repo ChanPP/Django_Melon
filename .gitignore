@@ -3,7 +3,7 @@
 g
 *.pot
 *.pyc
-settings.py
+#settings.py
 app/config/settings.py
 __pycache__/
 local_settings.py

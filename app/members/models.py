@@ -26,3 +26,4 @@ class User(AbstractUser):
         if not like_created:
             like.delete()
         return like_created
+
