@@ -12,6 +12,12 @@ __all__ = (
 
 
 class ArtistManager(models.Manager):
+    def to_dict(self):
+        result = []
+        for instance in self.get_queryset():
+            result.append(instance.to_json())
+        return result
+
     def update_or_create_from_melon(self, artist_id):
         from .artist import Artist
         artist = ArtistData(artist_id)

@@ -35,7 +35,7 @@ urlpatterns = [
     path('album/', include('album.urls')),
     path('song/', include('song.urls')),
 
-    path('api/artist/', include('artist.urls.apis'))
+    path('api/artist/', include('artist.urls.apis')),
 ]
 # settings.MEDIA_URL('/media/')로 시작하는 요청은
 # document_root인 settings.MEDIA_ROOT폴더(ROOT_DIR/.media)에서 파일을 찾아 리턴해준다
