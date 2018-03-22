@@ -21,7 +21,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 # Static
 # User-uploaded file들이 저장될 위치
-MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
+MEDIA_ROOT = os.åpath.join(ROOT_DIR, '.media')
 MEDIA_URL = '/media/'
 # 프로젝트 정적파일들을 검색({% static %})할 디렉토리 목록
 STATICFILES_DIRS = [
@@ -50,6 +50,19 @@ AUTHENTICATION_BACKENDS = [
     'members.backends.FacebookBackend',
 ]
 
+# django-cors-headers
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+)
+
+# DRF
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,7 +71,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'django_extensions',
+    'rest_framework',
+    'rest_framework.authtoken',
 
     'album',
     'artist',
@@ -67,6 +83,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -109,7 +126,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
         'USER': 'fc-7th',
-        'PASSWORD': 'qkrcks12',
+        'PASSWORD': 'qkrcks123#',
     }
 }
 
@@ -143,7 +160,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
 # Static files (CSS, JavaScript, Images)
-
-
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
