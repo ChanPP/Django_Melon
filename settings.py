@@ -21,7 +21,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 # Static
 # User-uploaded file들이 저장될 위치
-MEDIA_ROOT = os.åpath.join(ROOT_DIR, '.media')
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 MEDIA_URL = '/media/'
 # 프로젝트 정적파일들을 검색({% static %})할 디렉토리 목록
 STATICFILES_DIRS = [
@@ -48,11 +48,14 @@ FACEBOOK_SECRET_CODE = '72dc3b07daafcd4cacd4ce566e14329d'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'members.backends.FacebookBackend',
+    'members.backends.APIFacebookBackend',
+
 ]
 
 # django-cors-headers
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
+    'localhost:63342',
 )
 
 # DRF
